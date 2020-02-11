@@ -120,8 +120,10 @@ pipeline {
 						 context: 'Jenkins',
 						 description: "This PR passed the Jenkins Reg Test ${BUILD_TAG} ${JOB_NAME}",
 						 targetUrl: "${env.JOB_URL}${env.BUILD_NUMBER}/testResults")						
-					} 
-					failure {
+					}
+				}
+				failure {
+					script {		
 						pullRequest.addLabel("Failed")
 						gitHubPRStatus githubPRMessage(" Failure ${BUILD_TAG}")
 						pullRequest.createStatus(status: 'failure',
@@ -130,6 +132,7 @@ pipeline {
 						 targetUrl: "${env.JOB_URL}${env.BUILD_NUMBER}/testResults")						
 					}
 				}
+				
 			}
 		}
 		/* stage('Release Approval') {
