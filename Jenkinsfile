@@ -172,7 +172,7 @@ pipeline {
 			when {
 				anyOf { branch 'Re*' 
 					branch 'master'
-				}'
+				}
 			}
 			steps {
 				echo 'clean test'
