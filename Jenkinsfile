@@ -102,7 +102,20 @@ pipeline {
 				//sh "git rebase master"
 				//sh "git push -f origin master"
 			}
-		}				
+		}
+	      
+	        stage('Pre check MergeBuild') {
+			when {
+				branch 'PR*'
+			}
+			steps {
+					echo 'Clean Build'
+					sh "ls"
+					sh "git branch"
+					sh 'mvn clean compile package -Dtest=\\!TestRunner* -DfailIfNoTests=false'
+
+			}
+		}	    
 		stage('Approve the PR request') {
 			when {
 				branch 'PR*'
