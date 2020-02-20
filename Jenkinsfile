@@ -112,7 +112,7 @@ pipeline {
 					echo 'Clean Build'
 					sh "ls"
 					sh "git branch"
-					sh 'mvn clean compile package -Dtest=\\!TestRunner* -DfailIfNoTests=false'
+					sh 'mvn clean compile package -Dtest=\\!TestRunner* -DfailIfNoTests=false test'
 
 			}
 		}	    
